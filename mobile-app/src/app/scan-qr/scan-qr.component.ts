@@ -21,6 +21,10 @@ export class ScanQrComponent implements OnInit {
   
   }
   ngOnInit(){
+    if(!localStorage.getItem("idCitizen")){
+      alert("Enregistrez-vous !")
+      this.router.navigate(['/signin']);
+    }
   }
 
   @ViewChild(QrScannerComponent)  qrScannerComponent!: QrScannerComponent;

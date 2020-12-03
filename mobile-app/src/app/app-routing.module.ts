@@ -4,6 +4,7 @@ import { ScanQrComponent } from './scan-qr/scan-qr.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
 const routes: Routes = [
+  { path: '' , redirectTo: '/signin',pathMatch: 'full'},
   { path: 'signin' , component: SignInComponent},
   { path: 'scanqr' , component: ScanQrComponent}
 ];

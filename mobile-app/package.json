@@ -24,6 +24,8 @@
     "angularx-qrcode": "^10.0.11",
     "bootstrap": "^4.5.3",
     "getmac": "^5.17.0",
+    "http-server": "^0.12.3",
+    "idb": "^5.0.8",
     "jquery": "^3.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

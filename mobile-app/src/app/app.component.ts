@@ -12,16 +12,5 @@ export class AppComponent {
   title = 'BlockCovid App';
 
   constructor(private router : Router) { }
-  scanHandler(){
-    var x = document.getElementById("divHome");
-    if (x!.style.display === "none") {
-      x!.style.display = "block";
-    } else {
-      x!.style.display = "none";
-    }
-    // http request get id 
-    // stocker quelque part 
-    // if id recu reroute si pas on reste 
-    this.router.navigate(['/scanqr'])
-  }
+  
 }

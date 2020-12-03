@@ -16,9 +16,13 @@ export class ApiService {
 
   constructor(private http: HttpClient,
     private messageService: MessageService) { }
+  
 
-  login(username, password) {
-    return this.http.post<any>(environment.api_url + '/connexion', { "login": username, "password": password })
+    covid(id_citizen) {
+    return this.http.post<any>(environment.api_url + '/citizen/positive_covid', { "citizen_id": id_citizen})
   }
+    contact(id_citizen,id_place){
+        return this.http.post<any>(environment.api_url + '/citizen/visit', { "place_id": id_place, "citizen_id": id_citizen })
+    }
   
 }

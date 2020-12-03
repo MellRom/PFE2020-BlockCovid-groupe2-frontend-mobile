@@ -16,12 +16,11 @@ import { Router } from '@angular/router'
 })
 
 export class ScanQrComponent implements OnInit {
-    
+  uuid_citizen = localStorage.getItem("idCitizen");
   constructor(private router : Router){
   
   }
   ngOnInit(){
-
   }
 
   @ViewChild(QrScannerComponent)  qrScannerComponent!: QrScannerComponent;
@@ -57,7 +56,7 @@ export class ScanQrComponent implements OnInit {
         
         // redirection vers qr Menu -> X scan-qr
         // Ici , sign in juste pour reset le qr scan 
-        this.router.navigate(['/signin'])
+       
       });
       
     }

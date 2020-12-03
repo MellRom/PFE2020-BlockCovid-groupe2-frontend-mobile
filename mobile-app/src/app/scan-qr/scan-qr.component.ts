@@ -8,6 +8,7 @@ import {
 
 import { QrScannerComponent } from 'angular2-qrscanner';
 import { Router } from '@angular/router'
+import { ApiService } from '../services/api/api.service';
 @Component({
   selector: 'app-scan-qr',
   templateUrl: './scan-qr.component.html',
@@ -17,7 +18,7 @@ import { Router } from '@angular/router'
 
 export class ScanQrComponent implements OnInit {
   uuid_citizen = localStorage.getItem("idCitizen");
-  constructor(private router : Router){
+  constructor(private router : Router, private apiService : ApiService){
   
   }
   ngOnInit(){
@@ -54,13 +55,14 @@ export class ScanQrComponent implements OnInit {
         }
       });
 
-      this.qrScannerComponent.capturedQr.subscribe((result : QrScannerComponent) => {
+      this.qrScannerComponent.capturedQr.subscribe((result : string) => {
+        //TODO : moyen plus efficace pour retirer l'information qr
         alert(result)
-        // TODO: pop up confirmation infos qr code pour envoyer vers back end
-        
-        // redirection vers qr Menu -> X scan-qr
-        // Ici , sign in juste pour reset le qr scan 
-       
+        console.log(result)
+        let results : string[] = result.split("\'")
+        let idPlace : string = results[1]
+        console.log(idPlace)
+        this.apiService.contact(this.uuid_citizen,idPlace).subscribe(data =>{ console.log("success")}, error =>{ console.log(error)})
       });
       
     }

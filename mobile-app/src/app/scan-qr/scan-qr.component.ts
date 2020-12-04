@@ -62,7 +62,7 @@ export class ScanQrComponent implements OnInit {
         let results : string[] = result.split("\'")
         let idPlace : string = results[1]
         console.log(idPlace)
-        this.apiService.contact(this.uuid_citizen,idPlace).subscribe(data =>{ console.log("success")}, error =>{ console.log(error)})
+        this.apiService.contact(this.uuid_citizen,idPlace).subscribe(data =>{ alert("le QrCode est bien passé") }, error =>{ console.log(error);alert("Erreur QrCode")})
       });
       
     }

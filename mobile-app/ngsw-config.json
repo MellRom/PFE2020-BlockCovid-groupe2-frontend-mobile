@@ -26,5 +26,18 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-call",
+      "urls": ["https://blockcovid-groupe2-back.herokuapp.com/*"],
+      "cacheConfig": {
+        "maxAge": "10d",
+        "maxSize": 20,
+        "strategy": "performance",
+        "timeout": "5s"
+      }
+    }
+
   ]
 }

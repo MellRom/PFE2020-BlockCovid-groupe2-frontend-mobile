@@ -19,7 +19,7 @@ export class AccueilComponent {
    
   }
 
-  titleSignIn: string = 'Enregistrez vous pour utiliser le QR Code !';
+  titleScan: string = 'Commencez à scanner !';
   
 
 

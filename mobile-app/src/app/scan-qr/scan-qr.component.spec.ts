@@ -8,9 +8,8 @@ describe('ScanQrComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScanQrComponent ]
-    })
-    .compileComponents();
+      declarations: [ScanQrComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

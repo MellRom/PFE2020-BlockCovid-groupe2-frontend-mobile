@@ -16,21 +16,21 @@ self.addEventListener("sync", (event) => {
 });
 
 function addCovid(medecin_id, citizen_id, sick_since) {
-    body = {
-      //medecin_id: medecin_id,
-      citizen_id: citizen_id,
-      sick_since: sick_since,
-    };
-    fetch(environnement[0] + "/citizen/positive_covid", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then(() => Promise.resolve())
-      .catch(() => Promise.reject());
-  }
+  body = {
+    //medecin_id: medecin_id,
+    citizen_id: citizen_id,
+    sick_since: sick_since,
+  };
+  fetch(environnement[0] + "/citizen/positive_covid", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  })
+    .then(() => Promise.resolve())
+    .catch(() => Promise.reject());
+}
 
 function getDataCovidAndSend() {
   let db;
@@ -52,16 +52,13 @@ function getCovidData(db) {
     console.log("error getCovidData");
   };
   request.onsuccess = (event) => {
-      console.log("sW" + request.result)
-      covid = JSON.parse(request.result);
-      addCovid(covid.medecin_id, covid.citizen_id, covid.sick_since);
-      console.log(
-        "post covid data success after Offline  " + covid.sick_since
-      );
-      objStore.delete('covid');
-    }
-};
-
+    console.log("sW" + request.result);
+    covid = JSON.parse(request.result);
+    addCovid(covid.medecin_id, covid.citizen_id, covid.sick_since);
+    console.log("post covid data success after Offline  " + covid.sick_since);
+    objStore.delete("covid");
+  };
+}
 
 function addVisit(place_id, citizen_id, date) {
   body = {

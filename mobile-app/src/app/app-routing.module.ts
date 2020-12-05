@@ -5,7 +5,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AccueilComponent } from './accueil/accueil.component';
 
 const routes: Routes = [
-  { path: '' , redirectTo: '/accueil',pathMatch: 'full'},
+  { path: '' , redirectTo: '/signin',pathMatch: 'full'},
   { path: 'signin' , component: SignInComponent},
   { path: 'scanqr' , component: ScanQrComponent},
   { path: 'accueil' , component: AccueilComponent}

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {ApiService} from 'src/app/services/api/api.service'
-import {ICitizen} from 'src/models/citizen'
-import {IdbService} from '../services/idb.service'
+import { ApiService } from 'src/app/services/api/api.service';
+import { ICitizen } from 'src/models/citizen';
 
 @Component({
   selector: 'app-accueil',
@@ -11,33 +10,20 @@ import {IdbService} from '../services/idb.service'
 })
 export class AccueilComponent {
 
-  citizen: ICitizen = { 
-    citizen_id: "non Disponible , Inscrivez vous !",
-    sick_since: null
-  }
-  constructor(private router: Router, private apiService :ApiService, private indexedDBService :IdbService) {
-   
-  }
+  constructor(private router: Router, private apiService: ApiService) {}
 
   titleScan: string = 'Commencez à scanner !';
-  
 
+  ngOnInit(): void {
+    if (localStorage.getItem('uuid-citizen')) {
+      console.log(
+        "j'essaye de rentrer dans accueil avec uuuid -> redirection scan"
+      );
+      this.router.navigate(['/scanqr']);
+    }
+  }
 
   scanhandler() {
-    if(localStorage.getItem("idCitizen")){
-      this.apiService.signIn().subscribe( data =>{ 
-        this.citizen = data;
-        localStorage.setItem("idCitizen", this.citizen.citizen_id.toString())
-        this.router.navigate(['/scanqr']);
-       })
-    }else{
       this.router.navigate(['/signin']);
-    }
-    
-    
-    console.log(this.citizen)
-   
-    
   }
 }
-

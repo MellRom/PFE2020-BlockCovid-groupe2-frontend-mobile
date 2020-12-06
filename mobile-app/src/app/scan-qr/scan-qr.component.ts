@@ -92,7 +92,7 @@ export class ScanQrComponent implements OnInit {
           this.visit.citizen_id = this.uuid_citizen!;
           this.currentDateTest = this.pipe.transform(
             Date.now(),
-            'yyyy-MM-dd hh:mm:ss'
+            'yyyy-MM-dd HH:mm:ss.000000000'
           )!;
           this.visit.entrance_date = this.currentDateTest!;
           console.log(this.visit);
@@ -105,19 +105,27 @@ export class ScanQrComponent implements OnInit {
             )
             .subscribe(
               (data) => {
-                alert('Qr code boum visit');
+                alert('le QrCode Visit est bien passé');
                 alert(
-                  'QR code scanné le ' +
+                  'QR code scanné le (' +
                     this.visit.entrance_date +
-                    ': \nNam : ' +
+                    ') \nName : ' +
                     this.visit.name +
                     '\ndescription : ' +
                     this.visit.description
                 );
               },
               (error) => {
+                alert(
+                  'QR code scanné le ' +
+                    this.visit.entrance_date +
+                    '\nName : ' +
+                    this.visit.name +
+                    '\ndescription : ' +
+                    this.visit.description
+                );
                 if (this.visit.citizen_id != '') {
-                  console.log('Oups');
+                  console.log('erreur : le QrCode Visit');
                   alert('');
                   this.indexedDbService
                     .addVisit(this.visit)

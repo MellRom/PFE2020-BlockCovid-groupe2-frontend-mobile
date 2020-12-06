@@ -21,8 +21,10 @@ export class ApiService {
     return this.http.post<any>(
       environment.api_url + '/citizen/positive_covid',
       {
-        //"citizen_id": id_citizen ,
-        sick_since: sick_since,
+        citizen:{
+          citizen_id: id_citizen
+        },
+        sick_since: sick_since
       }
     );
   }
@@ -35,8 +37,12 @@ export class ApiService {
   contact(id_citizen, id_place, entrance_date) {
     return this.http.post<any>(environment.api_url + '/citizen/visit', {
       entrance_date: entrance_date,
-      place_id: id_place,
-      citizen_id: id_citizen,
+      place:{
+        place_id: id_place
+      },
+      citizen:{
+        citizen_id: id_citizen
+      }
     });
   }
 }

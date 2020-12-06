@@ -20,8 +20,10 @@ self.addEventListener("sync", (event) => {
 function addCovid(medecin_id, citizen_id, sick_since) {
   body = {
     //medecin_id: medecin_id,
-    citizen_id: citizen_id,
-    sick_since: sick_since,
+    citizen:{
+      citizen_id: id_citizen
+    },
+    sick_since: sick_since
   };
   fetch(environnement[0] + "/citizen/positive_covid", {
     method: "POST",
@@ -68,9 +70,13 @@ function getCovidData(db) {
 
 function addVisit(place_id, citizen_id, date) {
   body = {
-    place_id: place_id,
-    citizen_id: citizen_id,
     entrance_date: date,
+    place:{
+      place_id: place_id
+    },
+    citizen:{
+      citizen_id: citizen_id
+    }
   };
   fetch(environnement[0] + "/citizen/visit", {
     method: "POST",

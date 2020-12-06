@@ -103,8 +103,11 @@ function getVisitData(db) {
       console.log(element);
       visit = JSON.parse(element);
       // compare Date.now and Date scanned --> if above 10 days no registration
-      let dateNow = Date.now();
-      let gapTime = dateNow - visit.entrance_date;
+      let dateNow = new Date(Date.now());
+      let daterOnlyRegistered = visit.entrance_date.split(" ")[0].split("-");
+      let dateRegistered = new Date(parseInt(daterOnlyRegistered[0]),parseInt(daterOnlyRegistered[1])-1,parseInt(daterOnlyRegistered[2]));
+      console.log(dateRegistered);
+      let gapTime = dateNow.getTime() - dateRegistered.getTime();
       if (Math.floor(gapTime / (24 * 3600 * 1000)) >= 10) {
         console.log("gap registration too big to be considered");
       } else {

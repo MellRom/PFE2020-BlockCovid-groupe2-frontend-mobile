@@ -92,7 +92,7 @@ export class ScanQrComponent implements OnInit {
           this.visit.citizen_id = this.uuid_citizen!;
           this.currentDateTest = this.pipe.transform(
             Date.now(),
-            'yyyy-mm-dd hh:mm:ss'
+            'yyyy-MM-dd hh:mm:ss'
           )!;
           this.visit.entrance_date = this.currentDateTest!;
           console.log(this.visit);

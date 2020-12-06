@@ -56,8 +56,12 @@ function getCovidData(db) {
   request.onsuccess = (event) => {
     console.log("sW" + request.result);
     covid = JSON.parse(request.result);
-    addCovid(covid.medecin_id, covid.citizen_id, covid.sick_since);
-    console.log("post covid data success after Offline  " + covid.sick_since);
+    if(checkGapTooBig(covid.sick_since)){
+      addCovid(covid.medecin_id, covid.citizen_id, covid.sick_since);
+      console.log("post covid data success after Offline  " + covid.sick_since);
+    }else{
+      console.log("gap registration too big to be considered");
+    }
     objStore.delete("covid");
   };
 }
@@ -102,21 +106,31 @@ function getVisitData(db) {
     request.result.forEach((element) => {
       console.log(element);
       visit = JSON.parse(element);
-      // compare Date.now and Date scanned --> if above 10 days no registration
-      let dateNow = new Date(Date.now());
-      let daterOnlyRegistered = visit.entrance_date.split(" ")[0].split("-");
-      let dateRegistered = new Date(parseInt(daterOnlyRegistered[0]),parseInt(daterOnlyRegistered[1])-1,parseInt(daterOnlyRegistered[2]));
-      console.log(dateRegistered);
-      let gapTime = dateNow.getTime() - dateRegistered.getTime();
-      if (Math.floor(gapTime / (24 * 3600 * 1000)) >= 10) {
-        console.log("gap registration too big to be considered");
-      } else {
+      if(checkGapTooBig(visit.entrance_date)){
         addVisit(visit.place_id, visit.citizen_id, visit.entrance_date);
         console.log(
           "post visit data success after Offline  " + visit.entrance_date
         );
-        objStore.delete(visit.place_id + visit.entrance_date);
+      }else{
+        console.log("gap registration too big to be considered");
       }
+      objStore.delete(visit.place_id + visit.entrance_date);
     });
   };
+}
+
+// compare Date.now and Date scanned --> if above 10 days no registration
+function checkGapTooBig(dateTimeRegistered){
+  let dateNow = new Date(Date.now());
+  let dateOnlyRegistered = dateTimeRegistered.split(" ")[0].split("-");
+  let dateRegistered = new Date(parseInt(dateOnlyRegistered[0]),parseInt(dateOnlyRegistered[1])-1,parseInt(dateOnlyRegistered[2]));
+  console.log(dateRegistered);
+  let gapTime = dateNow.getTime() - dateRegistered.getTime();
+  if (Math.floor(gapTime / (24 * 3600 * 1000)) >= 10) {
+    console.log("gap registration too big to be considered");
+    return false;
+  } else {
+    console.log("post request will be proceed");
+    return true;
+  }
 }

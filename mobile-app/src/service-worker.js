@@ -1,5 +1,7 @@
 importScripts("./ngsw-worker.js");
 
+
+
 const environnement = [
   "http://localhost:8080",
   "https://blockcovid-groupe2-back.herokuapp.com",

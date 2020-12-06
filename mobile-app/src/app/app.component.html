@@ -1,11 +1,18 @@
-
-<div class="container my-5">
-    <h1 class="text-center">{{title}}</h1>
+<div id="titleContainer" >
+  <h1 id="titleApp"><img
+    src="../assets/icons/BlockCovidMiniBlanc.png"
+    alt="BlockCovid icone d'accueil"
+    margin-top="0"
+    width="47"
+    height="47"
+  /> {{ title }}</h1>
+ 
+ 
   <!-- /container -->
-
-<router-outlet></router-outlet>
-<div class="footer">
-  <hr>
-  <p>BlockCovid <code>Groupe 2</code></p>
 </div>
+<router-outlet></router-outlet>
+
+<div class="footer">
+  <hr />
+  <p>BlockCovid <code>Groupe 2</code></p>
 </div>

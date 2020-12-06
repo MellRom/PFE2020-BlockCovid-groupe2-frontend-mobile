@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   
 })
 export class AppComponent {
-  title = 'BlockCovid App';
+  title = 'BlockCovid';
 
   constructor(private router : Router) { }
   

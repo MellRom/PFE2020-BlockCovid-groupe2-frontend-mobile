@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, JsonpInterceptor } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { MessageService } from '../message/message.service';
 import { ICitizen } from '../../../models/citizen';
@@ -21,10 +21,10 @@ export class ApiService {
     return this.http.post<any>(
       environment.api_url + '/citizen/positive_covid',
       {
-        citizen:{
-          citizen_id: id_citizen
+        citizen: {
+          citizen_id: id_citizen,
         },
-        sick_since: sick_since
+        sick_since: sick_since,
       }
     );
   }
@@ -35,14 +35,14 @@ export class ApiService {
     );
   }
   contact(id_citizen, id_place, entrance_date) {
-    return this.http.post<any>(environment.api_url + '/citizen/visit', {
-      entrance_date: entrance_date,
+    return this.http.post<any>(environment.api_url + "/citizen/visit", {
       place:{
-        place_id: id_place
+        place_id: id_place,
       },
-      citizen:{
-        citizen_id: id_citizen
-      }
+      citizen: {
+        citizen_id: id_citizen,
+      },
+      entrance_date: entrance_date,
     });
   }
 }

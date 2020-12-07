@@ -105,9 +105,9 @@ export class ScanQrComponent implements OnInit {
             )
             .subscribe(
               (data) => {
-                alert('le QrCode Visit est bien passé');
+                console.log("success "+ JSON.stringify(data))
                 alert(
-                  'QR code scanné le (' +
+                  'Success : QR code scanné le (' +
                     this.visit.entrance_date +
                     ') \nName : ' +
                     this.visit.name +
@@ -116,6 +116,8 @@ export class ScanQrComponent implements OnInit {
                 );
               },
               (error) => {
+               console.log(error);
+               console.log('erreur : le QrCode Visit');
                 alert(
                   'QR code scanné le ' +
                     this.visit.entrance_date +
@@ -124,9 +126,9 @@ export class ScanQrComponent implements OnInit {
                     '\ndescription : ' +
                     this.visit.description
                 );
+                
                 if (this.visit.citizen_id != '') {
                   console.log('erreur : le QrCode Visit');
-                  alert('');
                   this.indexedDbService
                     .addVisit(this.visit)
                     .then(this.backgroundSyncScanVisit)
@@ -153,7 +155,7 @@ export class ScanQrComponent implements OnInit {
               (error) => {
                 if (this.covid.citizen_id != '') {
                   console.log(error);
-                  alert('Erreur QrCode');
+                  alert('Erreur QrCode covid ?');
                   this.indexedDbService
                     .addCovid(this.covid)
                     .then(this.backgroundSyncScanCovid)

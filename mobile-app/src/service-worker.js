@@ -69,6 +69,7 @@ function getCovidData(db) {
 }
 
 function addVisit(place_id, citizen_id, date) {
+  console.log("je rentre dans le service worker")
   body = {
     entrance_date: date,
     place:{

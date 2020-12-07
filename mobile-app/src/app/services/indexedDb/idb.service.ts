@@ -34,6 +34,7 @@ export class IdbService {
     let covidString: string = JSON.stringify(covid);
     return this.db.put('scan-covid', covidString, 'covid');
   }
+
 }
 
 interface MyDB extends DBSchema {

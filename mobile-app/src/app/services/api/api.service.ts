@@ -34,6 +34,7 @@ export class ApiService {
       environment.api_url + '/citizen/inscription'
     );
   }
+  
   contact(id_citizen, id_place, entrance_date) {
     return this.http.post<any>(environment.api_url + '/citizen/visit', {
       entrance_date: entrance_date,

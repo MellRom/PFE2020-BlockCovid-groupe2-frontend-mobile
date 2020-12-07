@@ -14,16 +14,17 @@ export class AccueilComponent {
 
   titleScan: string = 'Commencez à scanner !';
 
-  ngOnInit(): void {
+  
+
+  scanhandler() { 
     if (localStorage.getItem('uuid-citizen')) {
       console.log(
         "j'essaye de rentrer dans accueil avec uuuid -> redirection scan"
       );
       this.router.navigate(['/scanqr']);
-    }
-  }
-
-  scanhandler() {
+    }else{
       this.router.navigate(['/signin']);
+    }
+      
   }
 }

@@ -1,4 +1,5 @@
 export interface ICitizen{
     citizen_id: string;
-    sick_since: null
+    sick_since?: string;
+    visitsDto?: string;
 };

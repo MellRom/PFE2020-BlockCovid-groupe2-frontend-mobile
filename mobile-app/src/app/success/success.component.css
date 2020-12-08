@@ -1,0 +1,36 @@
+h5 {
+  color: #d6666e;
+  text-decoration: #d6666e underline;
+}
+ul,
+li {
+  color: #d6666e;
+}
+div.container-img {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto; /* to center the container */
+}
+
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+/* For medium devices (e.g. tablets) */
+@media (min-width: 420px) {
+  img {
+    max-width: 48%;
+  }
+}
+/* For large devices (e.g. desktops) */
+@media (min-width: 760px) {
+  img {
+    max-width: 24%;
+  }
+}
+
+#AccueilButton {
+  background-color: #d6666e;
+  color: white;
+}

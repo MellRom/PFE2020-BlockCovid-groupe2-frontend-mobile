@@ -21,7 +21,7 @@ function addCovid(medecin_id, citizen_id, sick_since) {
   body = {
     //medecin_id: medecin_id,
     citizen:{
-      citizen_id: id_citizen
+      citizen_id: citizen_id
     },
     sick_since: sick_since
   };

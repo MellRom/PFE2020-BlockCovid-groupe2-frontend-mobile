@@ -18,13 +18,12 @@ export class ApiService {
   ) {}
 
   covid(id_citizen, sick_since) {
+    console.log(id_citizen + sick_since)
     return this.http.post<any>(
       environment.api_url + '/citizen/positive_covid',
       {
-        citizen: {
-          citizen_id: id_citizen,
-        },
-        sick_since: sick_since,
+        citizen_id: id_citizen,
+        sick_since: sick_since
       }
     );
   }
@@ -36,6 +35,9 @@ export class ApiService {
   }
   
   contact(id_citizen, id_place, entrance_date) {
+    //CONSOLE LOG - DEBUG - VISIT 
+    console.log("api post visit " + "place_id :" + id_place + " citizen_id :" + id_citizen + " entrance_date :" + entrance_date)
+    //
     return this.http.post<any>(environment.api_url + "/citizen/visit", {
       place:{
         place_id: id_place,

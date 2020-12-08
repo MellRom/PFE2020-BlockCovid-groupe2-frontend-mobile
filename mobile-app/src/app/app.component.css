@@ -1,6 +1,13 @@
 .footer {
   margin-top: 50px;
   font-size: 12px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.041);
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
 .button {
   align-self: center;

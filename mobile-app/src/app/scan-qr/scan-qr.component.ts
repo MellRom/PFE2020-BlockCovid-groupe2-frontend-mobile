@@ -79,7 +79,7 @@ export class ScanQrComponent implements OnInit {
 
     //QR --> identify Type of Qr and send to Back
     this.qrScannerComponent.capturedQr.subscribe((result: string) => {
-      alert(result);
+      
       console.log(result);
       let results: string[] = result.split("'");
       let statut: string = results[1];
@@ -105,27 +105,13 @@ export class ScanQrComponent implements OnInit {
             )
             .subscribe(
               (data) => {
-                console.log("success "+ JSON.stringify(data))
-                alert(
-                  'Success : QR code scanné le (' +
-                    this.visit.entrance_date +
-                    ') \nName : ' +
-                    this.visit.name +
-                    '\ndescription : ' +
-                    this.visit.description
-                );
+                console.log("success "+ JSON.stringify(data));
+                
               },
               (error) => {
                console.log(error);
                console.log('erreur : le QrCode Visit');
-                alert(
-                  'QR code scanné le ' +
-                    this.visit.entrance_date +
-                    '\nName : ' +
-                    this.visit.name +
-                    '\ndescription : ' +
-                    this.visit.description
-                );
+                
                 
                 if (this.visit.citizen_id != '') {
                   console.log('erreur : le QrCode Visit');
@@ -133,11 +119,16 @@ export class ScanQrComponent implements OnInit {
                     .addVisit(this.visit)
                     .then(this.backgroundSyncScanVisit)
                     .catch(console.log);
+                    this.router.navigate(['/offline']); 
+                    
                 } else {
                   console.log('nope');
+                  this.router.navigate(['/error']);
                 }
+                  
               }
             );
+            this.router.navigate(['/success']);    
           break;
         case 'covid':
           //parsing qr code
@@ -150,26 +141,28 @@ export class ScanQrComponent implements OnInit {
             .covid(this.uuid_citizen, this.covid.sick_since)
             .subscribe(
               (data) => {
-                alert('le QrCode Covid est bien passé');
+                
               },
               (error) => {
                 if (this.covid.citizen_id != '') {
                   console.log(error);
-                  alert('Erreur QrCode covid ?');
+                  
                   this.indexedDbService
                     .addCovid(this.covid)
                     .then(this.backgroundSyncScanCovid)
                     .catch(console.log);
+                    this.router.navigate(['/offline']);
                 } else {
                   console.log('nope');
+                  this.router.navigate(['/error']);
                 }
               }
             );
-
+            this.router.navigate(['/covid']); //component covid
           break;
 
         default:
-          alert('Wrong QrCode');
+          this.router.navigate(['/error']);
           break;
       }
     });

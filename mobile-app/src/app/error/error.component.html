@@ -1,0 +1,29 @@
+<h5>{{ warningMessage }}</h5>
+<ul>
+  
+    {{ warning }}
+  
+  <br>
+  
+    {{ warning2 }}
+  
+</ul>
+<div class="container-img">
+  <div class="my-3">
+    <img
+      src="../../assets/icons/error.png"
+      width="200"
+      height="200"
+    />
+  </div>
+  <div class="text-center">
+    <button
+      id="AccueilButton"
+      type="button"
+      (click)="scanhandler()"
+      class="btn btn-lg mx-1"
+    >
+      {{ titleScan }}
+    </button>
+  </div>
+</div>

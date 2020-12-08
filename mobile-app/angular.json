@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "sockjs-client",
+              "stompjs"
+           ],
             "outputPath": "dist/mobile-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -24,7 +28,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/BlockCovidMini.ico",
+              "src/BlockCovidMiniIcone.ico",
               "src/assets",
               "src/manifest.webmanifest",
               "src/service-worker.js"
@@ -91,7 +95,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/BlockCovidMini.ico",
+              "src/BlockCovidMiniIcone.ico",
               "src/assets",
               "src/manifest.webmanifest"
             ],

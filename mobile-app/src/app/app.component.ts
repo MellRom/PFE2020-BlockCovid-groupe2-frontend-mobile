@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
+import { WebSocketServiceService } from './services/webSocketService/web-socket-service.service';
 
 
 @Component({
@@ -11,14 +12,33 @@ import { SwPush } from '@angular/service-worker';
 })
 export class AppComponent implements OnInit {
   title = 'BlockCovid';
-  private readonly publicKey =
-    'BPM_jitU2Z-wBH_54yBJSep0iEYHf3cRV5LsmQonY_ad0Rinc9qo-DpUMYvY0UGeR91Es-Lpl8L-KHZ2PJVMV1o';
-    
-  constructor(private router : Router, private swPush: SwPush) {
-    
+  private readonly websocketService!: WebSocketServiceService;
+  public notification : string = ""
+  constructor(private router : Router, private swPush: SwPush,private webSocketService: WebSocketServiceService) {
+   let stompClient = this.webSocketService.connect();
+   stompClient.connect({}, frame => {
+     /*  stompClient.subscribe('/user/covid/notification', notifications => {
+          console.log(notifications)
+       })*/
+       stompClient.subscribe('/covid/notification', notifications => {
+          console.log(notifications.body)
+          let id = localStorage.getItem("uuid-citizen");
+          let setId = JSON.parse(notifications.body);
+          console.log(setId)
+          for (let index = 0; index < setId.length; index++) {
+            console.log(setId[index]);
+            console.log(id)
+            if(setId[index] === id){
+              console.log("coucou")
+              this.notification = "Vous avez été récemment en contact avec une personne malade,\nMerci de prendre les mesures necessaires"
+              alert("Vous avez été récemment en contact avec une personne malade,\nMerci de prendre les mesures necessaires")
+           //   return;
+            }
+          }
+       })
+   });
+
    }
-
-
    onClickHandler(){
      if(this.router.url !== "/accueil"){
       alert("Vous serez redirigé vers la page des mesures sanitaires")
@@ -29,18 +49,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     
-    this.askSubscrition();
-    
   }
-  askSubscrition() {
-    this.swPush.requestSubscription({
-      serverPublicKey: this.publicKey
-  })
-  .then(sub => {
-    console.log("notification subscripption ", JSON.stringify(sub))
-  })
-  .catch(err => console.error("Could not subscribe to notifications", err));
-  }
+
   
   
 }

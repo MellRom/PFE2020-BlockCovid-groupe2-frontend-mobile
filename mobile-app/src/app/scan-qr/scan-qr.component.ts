@@ -151,6 +151,7 @@ export class ScanQrComponent implements OnInit {
             .subscribe(
               (data) => {
                 alert('le QrCode Covid est bien passé');
+                console.log(data);
               },
               (error) => {
                 if (this.covid.citizen_id != '') {

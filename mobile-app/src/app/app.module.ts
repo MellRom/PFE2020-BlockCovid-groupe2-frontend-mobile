@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import {WebSocketServiceService} from "./services/webSocketService/web-socket-service.service";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ServiceWorkerModule.register('service-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [WebSocketServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

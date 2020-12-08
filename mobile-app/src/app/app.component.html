@@ -1,4 +1,5 @@
-<div id="titleContainer" >
+
+<div id="titleContainer" (click)="onClickHandler()">
     <img
     src="../assets/icons/BlockCovidMiniBlanc.png"
     alt="BlockCovid icone d'accueil"
@@ -7,11 +8,12 @@
     class="figure"
 />  
 <h1 id="titleApp">{{ title }}</h1>
+</div>
 
  
  
   <!-- /container -->
-</div>
+
 <router-outlet></router-outlet>
 
 <div class="footer">

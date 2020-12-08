@@ -13,9 +13,22 @@ export class AppComponent implements OnInit {
   title = 'BlockCovid';
   private readonly publicKey =
     'BPM_jitU2Z-wBH_54yBJSep0iEYHf3cRV5LsmQonY_ad0Rinc9qo-DpUMYvY0UGeR91Es-Lpl8L-KHZ2PJVMV1o';
-  constructor(private router : Router, private swPush: SwPush) { }
+    
+  constructor(private router : Router, private swPush: SwPush) {
+    
+   }
+
+
+   onClickHandler(){
+     if(this.router.url !== "/accueil"){
+      alert("Vous serez redirigé vers la page des mesures sanitaires")
+      this.router.navigate(['/accueil']);
+     }
+    
+  }
 
   ngOnInit() {
+    
     this.askSubscrition();
     
   }

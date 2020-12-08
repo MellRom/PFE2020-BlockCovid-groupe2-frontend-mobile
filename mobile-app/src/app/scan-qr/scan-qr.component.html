@@ -1,6 +1,7 @@
-<h4 id="uuidShowned" >UUID : {{ uuid_citizen }}</h4>
-<h3 id="ScanTonQRCode" class="text-center">Scan ton QRcode</h3>
-<qr-scanner
+<h6 id="uuidShowned" >UUID : {{ uuid_citizen }}</h6>
+<h5 id="ScanTonQRCode">Scan ton QRcode BlockCovid</h5>
+<div id="QRScan-container">
+  <qr-scanner
   [debug]="false"
   [canvasWidth]="1080"
   [canvasHeight]="720"
@@ -8,3 +9,5 @@
   [updateTime]="500"
 >
 </qr-scanner>
+</div>
+

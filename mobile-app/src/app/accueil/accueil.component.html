@@ -1,4 +1,47 @@
-
-<h2 class="text-center">{{ titleScan }}</h2>
-
-<button type="button" (click)="scanhandler()" class="btn btn-primary btn-lg btn-block">Scan</button>
+<h5>{{ warningMessage }}</h5>
+<ul>
+  <li *ngFor="let warning of warningsString">
+    {{ warning }}
+  </li>
+</ul>
+<div class="container-img">
+  <div class="my-3">
+    <img
+      src="../../assets/icons/Geste-barriere-1m50.png"
+      width="100"
+      height="100"
+    />
+    <img
+      src="../../assets/icons/Geste-barriere-atchoum.png"
+      width="100"
+      height="100"
+    />
+    <img
+      src="../../assets/icons/Geste-barriere-laver-main.png"
+      width="100"
+      height="100"
+    />
+  </div>
+  <div class="my-3">
+    <img
+      src="../../assets/icons/portDuMasqueObligatoire.png"
+      width="100"
+      height="100"
+    />
+    <img
+      src="../../assets/icons/Geste-barriere-poignee.png"
+      width="100"
+      height="100"
+    />
+  </div>
+  <div class="text-center">
+    <button
+      id="AccueilButton"
+      type="button"
+      (click)="scanhandler()"
+      class="btn btn-lg mx-1"
+    >
+      {{ titleScan }}
+    </button>
+  </div>
+</div>

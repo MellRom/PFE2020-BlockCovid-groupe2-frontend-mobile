@@ -16,8 +16,8 @@ export class SignInComponent implements OnInit {
   };
   constructor(private router: Router, private apiService: ApiService, private indexedDbService : IdbService) {}
 
-  titleSignIn: string = 'Enregistrez vous pour utiliser le QR Code !';
-
+  titleSignIn: string = 'Enregistrez vous anonymement';
+  signIn : string = 'Clique ici pour commencer'
   ngOnInit(): void {
     if (localStorage.getItem('uuid-citizen')) {
       console.log('refresh je rentre dedans ');

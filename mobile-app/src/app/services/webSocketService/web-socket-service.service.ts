@@ -6,8 +6,6 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class WebSocketService {
   private serverUrl = environment.api_url + '/socket';
-  public mapEndpointSubscription: Map<string, any> = new Map();
-
   public connect() {
     let socket = new SockJS(this.serverUrl);
     let stompClient = Stomp.over(socket);

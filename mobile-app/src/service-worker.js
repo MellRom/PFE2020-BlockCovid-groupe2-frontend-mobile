@@ -4,7 +4,7 @@ importScripts("./ngsw-worker.js");
 
 const environnement = [
   "http://localhost:8080",
-  "https://blockcovid-groupe2-back.herokuapp.com",
+  "https://blockcovid-pfeipl-groupe2-back.herokuapp.com",
 ];
 
 self.addEventListener("sync", (event) => {
@@ -17,13 +17,12 @@ self.addEventListener("sync", (event) => {
   }
 });
 
-function addCovid(medecin_id, citizen_id, sick_since) {
+function addCovid(citizen_id, sick_since) {
   body = {
-    //medecin_id: medecin_id,
     citizen_id: citizen_id,
     sick_since: sick_since
   };
-  fetch(environnement[0] + "/citizen/positive_covid", {
+  fetch(environnement[1] + "/citizen/positive_covid", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,16 +50,13 @@ function getCovidData(db) {
   const objStore = trans.objectStore("scan-covid");
   const request = objStore.get("covid");
   request.onerror = (event) => {
-    console.log("error getCovidData");
+    console.log("error SW getCovidData");
   };
   request.onsuccess = (event) => {
-    console.log("sW" + request.result);
     covid = JSON.parse(request.result);
     if(checkGapTooBig(covid.sick_since)){
-      addCovid(covid.medecin_id, covid.citizen_id, covid.sick_since);
+      addCovid(covid.citizen_id, covid.sick_since);
       console.log("post covid data success after Offline  " + covid.sick_since);
-    }else{
-      console.log("gap registration too big to be considered");
     }
     objStore.delete("covid");
   };
@@ -77,7 +73,7 @@ function addVisit(place_id, citizen_id, date) {
       citizen_id: citizen_id
     }
   };
-  fetch(environnement[0] + "/citizen/visit", {
+  fetch(environnement[1] + "/citizen/visit", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -109,15 +105,12 @@ function getVisitData(db) {
   request.onsuccess = (event) => {
     console.log(request.result);
     request.result.forEach((element) => {
-      console.log(element);
       visit = JSON.parse(element);
       if(checkGapTooBig(visit.entrance_date)){
         addVisit(visit.place_id, visit.citizen_id, visit.entrance_date);
         console.log(
           "post visit data success after Offline  " + visit.entrance_date
         );
-      }else{
-        console.log("gap registration too big to be considered");
       }
       objStore.delete(visit.place_id + visit.entrance_date);
     });
@@ -129,7 +122,6 @@ function checkGapTooBig(dateTimeRegistered){
   let dateNow = new Date(Date.now());
   let dateOnlyRegistered = dateTimeRegistered.split(" ")[0].split("-");
   let dateRegistered = new Date(parseInt(dateOnlyRegistered[0]),parseInt(dateOnlyRegistered[1])-1,parseInt(dateOnlyRegistered[2]));
-  console.log(dateRegistered);
   let gapTime = dateNow.getTime() - dateRegistered.getTime();
   if (Math.floor(gapTime / (24 * 3600 * 1000)) >= 10) {
     console.log("gap registration too big to be considered");

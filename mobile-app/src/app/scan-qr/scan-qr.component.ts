@@ -55,7 +55,6 @@ export class ScanQrComponent implements OnInit {
   @ViewChild(QrScannerComponent) qrScannerComponent!: QrScannerComponent;
   ngAfterViewInit(): void {
     this.qrScannerComponent.getMediaDevices().then((devices) => {
-      console.log(devices);
       const videoDevices: MediaDeviceInfo[] = [];
       for (const device of devices) {
         if (device.kind.toString() === 'videoinput') {
@@ -80,8 +79,7 @@ export class ScanQrComponent implements OnInit {
 
     //QR --> identify Type of Qr and send to Back
     this.qrScannerComponent.capturedQr.subscribe((result: string) => {
-      console.log('QRCode Scanned');
-      console.log('Check valid QRCode');
+      console.log('QRCode Scanned :Check valid QRCode');
       let results: string[] = result.split("'");
       let statut: string = results[1];
       switch (statut) {
@@ -108,25 +106,19 @@ export class ScanQrComponent implements OnInit {
                 this.router.navigate(['/success']);
               },
               (error) => {
-                console.log(error);
-                console.log("QrCode couldn't be sent to server");
-                //TODO :check no internet or invalid parameters
-                if (this.visit.citizen_id != '') {
-                  console.log('erreur : le QrCode Visit');
-                  this.indexedDbService
-                    .addVisit(this.visit)
-                    .then(this.backgroundSyncScanVisit)
-                    .catch(console.log);
-                  this.router.navigate(['/offline']);
-                } else {
-                  console.log('nope');
-                  this.router.navigate(['/error']);
-                }
+                console.log("QrCode couldn't be sent to server for now");
+                this.indexedDbService
+                  .addVisit(this.visit)
+                  .then(this.backgroundSyncScanVisit)
+                  .catch(console.log);
+                this.router.navigate(['/offline']);
+
                 //
               }
             );
 
           break;
+
         case 'covid':
           console.log('QrCode type : covid');
           this.covid.citizen_id = this.uuid_citizen!;
@@ -140,38 +132,29 @@ export class ScanQrComponent implements OnInit {
                 this.router.navigate(['/covid']);
               },
               (error) => {
-                //TODO :check no internet or invalid parameters
-                if (this.covid.citizen_id != '') {
-                  console.log(error);
-                  this.indexedDbService
-                    .addCovid(this.covid)
-                    .then(this.backgroundSyncScanCovid)
-                    .catch(console.log);
-                  this.router.navigate(['/offline']);
-                } else {
-                  console.log('nope');
-                  this.router.navigate(['/error']);
-                }
-                //
+                console.log("QrCode couldn't be sent to server for now");
+                this.indexedDbService
+                  .addCovid(this.covid)
+                  .then(this.backgroundSyncScanCovid)
+                  .catch(console.log);
+                this.router.navigate(['/offline']);
               }
             );
           break;
         default:
-          console.log('QrCode not knows ');
           this.router.navigate(['/error']);
           break;
       }
     });
   }
 
-
-  // method for backgroundSync Visit-> used for device not connected to internet and send request to server when back to online 
+  // method for backgroundSync Visit-> used for device not connected to internet and send request to server when back to online
   backgroundSyncScanVisit() {
     navigator.serviceWorker.ready
       .then((swRegistration) => swRegistration.sync.register('scan-visit'))
       .catch(console.log);
   }
-// method for backgroundSync Covid-> used for device not connected to internet and send request to server when back to online
+  // method for backgroundSync Covid-> used for device not connected to internet and send request to server when back to online
   backgroundSyncScanCovid() {
     navigator.serviceWorker.ready
       .then((swRegistration) => swRegistration.sync.register('scan-covid'))

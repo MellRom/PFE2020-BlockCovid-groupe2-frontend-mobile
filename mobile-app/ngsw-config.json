@@ -33,7 +33,8 @@
       {
         "name": "api-call",
         "urls": [
-          "http://localhost:8080/citizen/*"
+          "http://localhost:8080/citizen/*",
+          "https://blockcovid-pfeipl-groupe2-back.herokuapp.com/citizen/*"
         ],
         "cacheConfig": {
           "maxSize": 5,

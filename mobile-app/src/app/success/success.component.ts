@@ -11,7 +11,7 @@ export class SuccessComponent implements OnInit {
   constructor(private router: Router, private apiService: ApiService) {}
   ngOnInit(): void {
     if (!localStorage.getItem('uuid-citizen')) {
-      this.router.navigate(['/accueil']);
+      this.router.navigate(['/home']);
     }
   }
 
@@ -21,6 +21,6 @@ export class SuccessComponent implements OnInit {
     'Merci pour votre implication !\nEnsemble luttons contre la crise sanitaire !';
 
   homeHandler() {
-    this.router.navigate(['/accueil']);
+    this.router.navigate(['/home']);
   }
 }

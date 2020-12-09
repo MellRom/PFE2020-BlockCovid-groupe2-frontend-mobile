@@ -2,16 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CovidComponent } from './covid.component';
 
-describe('ErrorComponent', () => {
-  
+describe('CovidComponent', () => {
   let component: CovidComponent;
   let fixture: ComponentFixture<CovidComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CovidComponent ]
-    })
-    .compileComponents();
+      declarations: [CovidComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

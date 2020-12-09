@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
-  selector: 'app-accueil',
-  templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.css'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
-export class AccueilComponent {
+export class HomeComponent {
   constructor(private router: Router, private apiService: ApiService) {}
 
   HomeButtonMessage: string =
@@ -19,7 +19,7 @@ export class AccueilComponent {
     'Appliquer les distances de sécurité de 1,5m',
     'Eternuer dans le pli du coude',
     'Le port du masque obligatoire',
-    'limiter vos contacts rapprochés autant que possible'
+    'limiter vos contacts rapprochés autant que possible',
   ];
 
   homeHandler() {

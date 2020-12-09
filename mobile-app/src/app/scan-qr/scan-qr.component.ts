@@ -106,14 +106,15 @@ export class ScanQrComponent implements OnInit {
                 this.router.navigate(['/success']);
               },
               (error) => {
-                console.log("QrCode couldn't be sent to server for now");
-                this.indexedDbService
-                  .addVisit(this.visit)
-                  .then(this.backgroundSyncScanVisit)
-                  .catch(console.log);
-                this.router.navigate(['/offline']);
-
-                //
+                if (error.status === 400) {
+                  this.router.navigate(['/error']);
+                } else {
+                  console.log("QrCode couldn't be sent to server for now");
+                  this.indexedDbService
+                    .addVisit(this.visit)
+                    .then(this.backgroundSyncScanVisit)
+                    .catch(console.log);
+                }
               }
             );
 
@@ -125,19 +126,27 @@ export class ScanQrComponent implements OnInit {
           this.covid.medecin_id = results[3];
           this.covid.sick_since = results[5];
           this.apiService
-            .covid(this.uuid_citizen, this.covid.sick_since)
+            .covid(
+              this.covid.medecin_id,
+              this.uuid_citizen,
+              this.covid.sick_since
+            )
             .subscribe(
               (data) => {
                 console.log('QrCode successfully sent to server ');
                 this.router.navigate(['/covid']);
               },
               (error) => {
-                console.log("QrCode couldn't be sent to server for now");
-                this.indexedDbService
-                  .addCovid(this.covid)
-                  .then(this.backgroundSyncScanCovid)
-                  .catch(console.log);
-                this.router.navigate(['/offline']);
+                if (error.status === 400) {
+                  this.router.navigate(['/error']);
+                } else {
+                  console.log("QrCode couldn't be sent to server for now");
+                  this.indexedDbService
+                    .addCovid(this.covid)
+                    .then(this.backgroundSyncScanCovid)
+                    .catch(console.log);
+                  this.router.navigate(['/offline']);
+                }
               }
             );
           break;

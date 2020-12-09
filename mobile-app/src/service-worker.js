@@ -17,8 +17,9 @@ self.addEventListener("sync", (event) => {
   }
 });
 
-function addCovid(citizen_id, sick_since) {
+function addCovid(medecin_id,citizen_id, sick_since) {
   body = {
+    id_qrcode : medecin_id+sick_since,
     citizen_id: citizen_id,
     sick_since: sick_since
   };
@@ -55,7 +56,7 @@ function getCovidData(db) {
   request.onsuccess = (event) => {
     covid = JSON.parse(request.result);
     if(checkGapTooBig(covid.sick_since)){
-      addCovid(covid.citizen_id, covid.sick_since);
+      addCovid(covid.medecin_id,covid.citizen_id, covid.sick_since);
       console.log("post covid data success after Offline  " + covid.sick_since);
     }
     objStore.delete("covid");

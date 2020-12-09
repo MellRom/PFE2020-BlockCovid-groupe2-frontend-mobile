@@ -15,14 +15,12 @@ export class CovidComponent implements OnInit {
     }
   }
 
-  titleScan: string =
+  returnHomeButtonMessage: string =
     "Revenir à la page d'accueil";
-  warningMessage: string = "Vous avez été infecté";
+  covidMessage: string = "Vous avez été infecté";
+  covidMessage1: string="Il semble que vous êtes positive au covid.\nVeuillez vous mettre en quarantaine pendant 10 jours.\nForce à vous !";
 
-  warning: string="Il semble que vous soyez infecté ";
-  warning2: string="Veuillez vous quarantiner chez vous pendant une semaine minimum.";
-
-  scanhandler() {
+  homeHandler() {
     
       this.router.navigate(['/accueil']);
     

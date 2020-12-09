@@ -1,7 +1,7 @@
-<h5>{{ warningMessage }}</h5>
+<h5>{{ preventionMessage }}</h5>
 <ul>
-  <li *ngFor="let warning of warningsString">
-    {{ warning }}
+  <li *ngFor="let prevention of preventionsString">
+    {{ prevention }}
   </li>
 </ul>
 <div class="container-img">
@@ -38,10 +38,10 @@
     <button
       id="AccueilButton"
       type="button"
-      (click)="scanhandler()"
+      (click)="homeHandler()"
       class="btn btn-lg mx-1"
     >
-      {{ titleScan }}
+      {{ HomeButtonMessage }}
     </button>
   </div>
 </div>

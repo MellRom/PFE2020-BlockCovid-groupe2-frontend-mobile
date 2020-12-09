@@ -10,11 +10,11 @@ import { ApiService } from 'src/app/services/api/api.service';
 export class AccueilComponent {
   constructor(private router: Router, private apiService: ApiService) {}
 
-  titleScan: string =
+  HomeButtonMessage: string =
     'Protégez-vous, protégez vos proches, protégez les autres !';
-  warningMessage: string = 'Rappel des mesures sanitaires covid :';
+  preventionMessage: string = 'Rappel des mesures sanitaires covid :';
 
-  warningsString: string[] = [
+  preventionsString: string[] = [
     'Se laver les mains régulièrement',
     'Appliquer les distances de sécurité de 1,5m',
     'Eternuer dans le pli du coude',
@@ -22,11 +22,8 @@ export class AccueilComponent {
     'limiter vos contacts rapprochés autant que possible'
   ];
 
-  scanhandler() {
+  homeHandler() {
     if (localStorage.getItem('uuid-citizen')) {
-      console.log(
-        "j'essaye de rentrer dans accueil avec uuuid -> redirection scan"
-      );
       this.router.navigate(['/scanqr']);
     } else {
       this.router.navigate(['/signin']);

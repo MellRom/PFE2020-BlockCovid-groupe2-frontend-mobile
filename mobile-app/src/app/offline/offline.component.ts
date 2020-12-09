@@ -15,14 +15,12 @@ export class OfflineComponent implements OnInit {
     }
   }
 
-  titleScan: string =
+  returnHomeButtonMessage: string =
     "Revenir à la page d'accueil";
-  warningMessage: string = "Vous n'êtes pas connecté à internet";
+  offlineMessage: string = "Vous n'êtes pas connecté à internet";
+  offlineMessage1: string="Pas de stress :\nVotre scan sera envoyé dès que vous vous connecterez";
 
-  warning: string="Pas de stress :";
-  warning2: string="Votre scan sera envoyé dès que vous vous connecterez";
-
-  scanhandler() {
+  homeHandler() {
     
       this.router.navigate(['/accueil']);
     

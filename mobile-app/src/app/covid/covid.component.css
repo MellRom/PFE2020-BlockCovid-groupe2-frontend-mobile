@@ -2,8 +2,7 @@ h5 {
   color: #d6666e;
   text-decoration: #d6666e underline;
 }
-ul,
-li {
+p {
   color: #d6666e;
 }
 div.container-img {
@@ -30,11 +29,11 @@ img {
   }
 }
 
-#AccueilButton {
+#returnHomeButton {
   background-color: #d6666e;
   color: white;
 }
-footer{
+footer {
   position: fixed;
   bottom: 0;
   width: 100%;

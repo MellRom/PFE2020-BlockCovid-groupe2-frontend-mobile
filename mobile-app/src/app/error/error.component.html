@@ -1,13 +1,7 @@
-<h5>{{ warningMessage }}</h5>
-<ul>
-  
-    {{ warning }}
-  
-  <br>
-  
-    {{ warning2 }}
-  
-</ul>
+<h5>{{ errorMessage }}</h5>
+<p>
+  {{ errorMessage1 }}
+</p>
 <div class="container-img">
   <div class="my-3">
     <img
@@ -18,12 +12,12 @@
   </div>
   <div class="text-center">
     <button
-      id="AccueilButton"
+      id="returnHomeButton"
       type="button"
-      (click)="scanhandler()"
+      (click)="homeHandler()"
       class="btn btn-lg mx-1"
     >
-      {{ titleScan }}
+      {{ returnHomeButtonMessage }}
     </button>
   </div>
 </div>

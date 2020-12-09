@@ -15,14 +15,12 @@ export class ErrorComponent implements OnInit {
     }
   }
 
-  titleScan: string =
+  returnHomeButtonMessage: string =
     "Revenir à la page d'accueil";
-  warningMessage: string = "Quelque chose s'est mal passé";
+  errorMessage: string = "Quelque chose s'est mal passé";
+  errorMessage1: string="Il semble que votre QR code n'est pas valide.\nSi le problème persiste veuillez contacter l'équipe technique";
 
-  warning: string="Il semble que votre QR code n'est pas valide =(";
-  warning2: string="Si le problème persiste veuillez contacter l'équipe technique";
-
-  scanhandler() {
+  homeHandler() {
     
       this.router.navigate(['/accueil']);
     

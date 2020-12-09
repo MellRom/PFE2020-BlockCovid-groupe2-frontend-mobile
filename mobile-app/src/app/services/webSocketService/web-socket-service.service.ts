@@ -8,7 +8,7 @@ export class WebSocketServiceService {
 
   private serverUrl =
     environment.api_url +
-    '/socket?token=';
+    '/socket';
   
   private stompClient;
   public mapEndpointSubscription: Map<string, any> = new Map();
@@ -16,7 +16,7 @@ export class WebSocketServiceService {
   public connect() {
     const id = localStorage.getItem("uuid-citizen")
    // let socket = new SockJS(`http://localhost:8080/socket?token=${id}`);
-    let socket = new SockJS(`http://localhost:8080/socket`);
+    let socket = new SockJS(this.serverUrl);
 
 
     let stompClient = Stomp.over(socket);

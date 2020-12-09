@@ -30,11 +30,11 @@ img {
   }
 }
 
-#AccueilButton {
+#returnHomeButton {
   background-color: #d6666e;
   color: white;
 }
-footer{
+footer {
   position: fixed;
   bottom: 0;
   width: 100%;

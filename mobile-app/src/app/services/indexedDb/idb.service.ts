@@ -36,12 +36,6 @@ export class IdbService {
     let covidString: string = JSON.stringify(covid);
     return this.db.put('scan-covid', covidString, 'covid');
   }
-
-  addCitizen(citizen : ICitizen){
-   // let citizenString : string = JSON.stringify(citizen);
-    return this.db.put('citizen',citizen, 'citizen');
-  }
-
 }
 
 interface MyDB extends DBSchema {
@@ -53,8 +47,8 @@ interface MyDB extends DBSchema {
     key: string;
     value: string;
   };
-  'citizen':{
-    key : string;
+  citizen: {
+    key: string;
     value: ICitizen;
-  }
+  };
 }

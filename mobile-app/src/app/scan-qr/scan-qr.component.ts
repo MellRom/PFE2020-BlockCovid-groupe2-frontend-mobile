@@ -44,6 +44,7 @@ export class ScanQrComponent implements OnInit {
     private indexedDbService: IdbService
   ) {}
 
+  //In case if the device doesn't have any uuid-citizen yet -> redirection to signIn component
   ngOnInit() {
     if (!localStorage.getItem('uuid-citizen')) {
       alert('Enregistrez-vous !');
@@ -79,13 +80,13 @@ export class ScanQrComponent implements OnInit {
 
     //QR --> identify Type of Qr and send to Back
     this.qrScannerComponent.capturedQr.subscribe((result: string) => {
-      
-      console.log(result);
+      console.log('QRCode Scanned');
+      console.log('Check valid QRCode');
       let results: string[] = result.split("'");
       let statut: string = results[1];
       switch (statut) {
         case 'place':
-          // Initiate Date and Time for scan etablishment
+          console.log('QrCode type : place ');
           this.visit.place_id = results[3];
           this.visit.name = results[5];
           this.visit.description = results[7];
@@ -95,8 +96,6 @@ export class ScanQrComponent implements OnInit {
             'yyyy-MM-dd HH:mm:ss.000000000'
           )!;
           this.visit.entrance_date = this.currentDateTest!;
-          console.log(this.visit);
-
           this.apiService
             .contact(
               this.uuid_citizen,
@@ -105,75 +104,74 @@ export class ScanQrComponent implements OnInit {
             )
             .subscribe(
               (data) => {
-                console.log("success "+ JSON.stringify(data));
-                
+                console.log('QrCode successfully sent to server ');
+                this.router.navigate(['/success']);
               },
               (error) => {
-               console.log(error);
-               console.log('erreur : le QrCode Visit');
-                
-                
+                console.log(error);
+                console.log("QrCode couldn't be sent to server");
+                //TODO :check no internet or invalid parameters
                 if (this.visit.citizen_id != '') {
                   console.log('erreur : le QrCode Visit');
                   this.indexedDbService
                     .addVisit(this.visit)
                     .then(this.backgroundSyncScanVisit)
                     .catch(console.log);
-                    this.router.navigate(['/offline']); 
-                    
+                  this.router.navigate(['/offline']);
                 } else {
                   console.log('nope');
                   this.router.navigate(['/error']);
                 }
-                  
+                //
               }
             );
-            this.router.navigate(['/success']);    
+
           break;
         case 'covid':
-          //parsing qr code
-          console.log('je rentre covid');
+          console.log('QrCode type : covid');
           this.covid.citizen_id = this.uuid_citizen!;
           this.covid.medecin_id = results[3];
           this.covid.sick_since = results[5];
-          console.log(this.covid);
           this.apiService
             .covid(this.uuid_citizen, this.covid.sick_since)
             .subscribe(
               (data) => {
-                
+                console.log('QrCode successfully sent to server ');
+                this.router.navigate(['/covid']);
               },
               (error) => {
+                //TODO :check no internet or invalid parameters
                 if (this.covid.citizen_id != '') {
                   console.log(error);
-                  
                   this.indexedDbService
                     .addCovid(this.covid)
                     .then(this.backgroundSyncScanCovid)
                     .catch(console.log);
-                    this.router.navigate(['/offline']);
+                  this.router.navigate(['/offline']);
                 } else {
                   console.log('nope');
                   this.router.navigate(['/error']);
                 }
+                //
               }
             );
-            this.router.navigate(['/covid']); //component covid
           break;
-
         default:
+          console.log('QrCode not knows ');
           this.router.navigate(['/error']);
           break;
       }
     });
   }
 
+
+  // method for backgroundSync Visit-> used for device not connected to internet and send request to server when back to online 
   backgroundSyncScanVisit() {
     navigator.serviceWorker.ready
       .then((swRegistration) => swRegistration.sync.register('scan-visit'))
       .catch(console.log);
   }
-
+// method for backgroundSync Covid-> used for device not connected to internet and send request to server when back to online
   backgroundSyncScanCovid() {
     navigator.serviceWorker.ready
       .then((swRegistration) => swRegistration.sync.register('scan-covid'))

@@ -1,29 +1,19 @@
-<h5>{{ warningMessage }}</h5>
-<ul>
-  
-    {{ warning }}
-  
-  <br>
-  
-    {{ warning2 }}
-  
-</ul>
+<h5>{{ successMessage }}</h5>
+<p>
+  {{ successMessage1 }}
+</p>
 <div class="container-img">
   <div class="my-3">
-    <img
-      src="../../assets/icons/validate-icon.jpg"
-      width="200"
-      height="200"
-    />
+    <img src="../../assets/icons/validate-icon.jpg" width="200" height="200" />
   </div>
   <div class="text-center">
     <button
-      id="AccueilButton"
+      id="returnHomeButton"
       type="button"
-      (click)="scanhandler()"
+      (click)="homeHandler()"
       class="btn btn-lg mx-1"
     >
-      {{ titleScan }}
+      {{ returnHomeButtonMessage }}
     </button>
   </div>
 </div>

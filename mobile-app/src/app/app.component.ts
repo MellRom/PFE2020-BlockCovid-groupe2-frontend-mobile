@@ -13,7 +13,7 @@ import { WebSocketServiceService } from './services/webSocketService/web-socket-
 export class AppComponent implements OnInit {
   title = 'BlockCovid';
   private readonly websocketService!: WebSocketServiceService;
-  public notification : string = ""
+  //public notification : string = ""
   constructor(private router : Router, private swPush: SwPush,private webSocketService: WebSocketServiceService) {
    let stompClient = this.webSocketService.connect();
    stompClient.connect({}, frame => {
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
             console.log(id)
             if(setId[index] === id){
               console.log("coucou")
-              this.notification = "Vous avez été récemment en contact avec une personne malade,\nMerci de prendre les mesures necessaires"
+            //  this.notification = "Vous avez été récemment en contact avec une personne malade,\nMerci de prendre les mesures necessaires"
               alert("Vous avez été récemment en contact avec une personne malade,\nMerci de prendre les mesures necessaires")
            //   return;
             }

@@ -29,9 +29,9 @@ export class AppComponent implements OnInit {
     });
   }
   onClickHandler() {
-    if (this.router.url !== '/accueil') {
+    if (this.router.url !== '/home') {
       alert('Vous serez redirigé vers la page des mesures sanitaires');
-      this.router.navigate(['/accueil']);
+      this.router.navigate(['/home']);
     }
   }
   notify(message: string): void {

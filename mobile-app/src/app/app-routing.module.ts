@@ -9,7 +9,7 @@ import { OfflineComponent } from './offline/offline.component';
 import { CovidComponent } from './covid/covid.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'signin', component: SignInComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'offline', component: OfflineComponent },

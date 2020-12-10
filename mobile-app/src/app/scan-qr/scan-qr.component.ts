@@ -114,6 +114,7 @@ export class ScanQrComponent implements OnInit {
                     .addVisit(this.visit)
                     .then(this.backgroundSyncScanVisit)
                     .catch(console.log);
+                    this.router.navigate(['/offline']);
                 }
               }
             );

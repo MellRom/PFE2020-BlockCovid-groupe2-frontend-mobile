@@ -10,11 +10,11 @@ import { ICitizen } from 'src/models/citizen';
 })
 export class SignInComponent implements OnInit {
   citizen: ICitizen = {
-    citizen_id: 'non Disponible , Inscrivez vous !',
+    citizen_id: 'non Disponible , Inscrivez-vous !',
   };
   constructor(private router: Router, private apiService: ApiService) {}
 
-  titleSignIn: string = 'Enregistrez vous anonymement';
+  titleSignIn: string = 'Enregistrez-vous anonymement';
   signIn: string = 'Clique ici pour commencer';
 
   ngOnInit(): void {

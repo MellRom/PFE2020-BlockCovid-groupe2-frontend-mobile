@@ -19,7 +19,7 @@ export class HomeComponent {
     'Appliquer les distances de sécurité de 1,5m',
     'Eternuer dans le pli du coude',
     'Le port du masque obligatoire',
-    'limiter vos contacts rapprochés autant que possible',
+    'Limiter vos contacts rapprochés autant que possible',
   ];
 
   homeHandler() {

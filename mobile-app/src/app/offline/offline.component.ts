@@ -18,7 +18,7 @@ export class OfflineComponent implements OnInit {
   returnHomeButtonMessage: string = "Revenir à la page d'accueil";
   offlineMessage: string = "Vous n'êtes pas connecté à internet";
   offlineMessage1: string =
-    'Pas de stress :\nVotre scan sera envoyé dès que votre connexion est revenue';
+    'Pas de stress :\nVotre scan sera envoyé dès que votre connexion sera revenue';
 
   homeHandler() {
     this.router.navigate(['/home']);

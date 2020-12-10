@@ -1,0 +1,16 @@
+#uuidShowned {
+  color: #d6666e;
+}
+#ScanTonQRCode {
+  color: #d6666e;
+}
+
+#QRScan-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}

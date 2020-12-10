@@ -1,0 +1,47 @@
+<h5>{{ preventionMessage }}</h5>
+<ul>
+  <li *ngFor="let prevention of preventionsString">
+    {{ prevention }}
+  </li>
+</ul>
+<div class="container-img">
+  <div class="my-3">
+    <img
+      src="../../assets/icons/Geste-barriere-1m50.png"
+      width="100"
+      height="100"
+    />
+    <img
+      src="../../assets/icons/Geste-barriere-atchoum.png"
+      width="100"
+      height="100"
+    />
+    <img
+      src="../../assets/icons/Geste-barriere-laver-main.png"
+      width="100"
+      height="100"
+    />
+  </div>
+  <div class="my-3">
+    <img
+      src="../../assets/icons/portDuMasqueObligatoire.png"
+      width="100"
+      height="100"
+    />
+    <img
+      src="../../assets/icons/Geste-barriere-poignee.png"
+      width="100"
+      height="100"
+    />
+  </div>
+  <div class="text-center">
+    <button
+      id="AccueilButton"
+      type="button"
+      (click)="homeHandler()"
+      class="btn btn-lg mx-1"
+    >
+      {{ HomeButtonMessage }}
+    </button>
+  </div>
+</div>

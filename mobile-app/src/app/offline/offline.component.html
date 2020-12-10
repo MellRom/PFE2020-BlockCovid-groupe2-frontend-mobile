@@ -1,0 +1,23 @@
+<h5>{{ offlineMessage }}</h5>
+<p>
+  {{ offlineMessage1 }}
+</p>
+<div class="container-img">
+  <div class="my-3">
+    <img
+      src="../../assets/icons/offline.png"
+      width="200"
+      height="200"
+    />
+  </div>
+  <div class="text-center">
+    <button
+      id="returnHomeButton"
+      type="button"
+      (click)="homeHandler()"
+      class="btn btn-lg mx-1"
+    >
+      {{ returnHomeButtonMessage }}
+    </button>
+  </div>
+</div>

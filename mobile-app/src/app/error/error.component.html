@@ -1,0 +1,23 @@
+<h5>{{ errorMessage }}</h5>
+<p>
+  {{ errorMessage1 }}
+</p>
+<div class="container-img">
+  <div class="my-3">
+    <img
+      src="../../assets/icons/error.png"
+      width="200"
+      height="200"
+    />
+  </div>
+  <div class="text-center">
+    <button
+      id="returnHomeButton"
+      type="button"
+      (click)="homeHandler()"
+      class="btn btn-lg mx-1"
+    >
+      {{ returnHomeButtonMessage }}
+    </button>
+  </div>
+</div>

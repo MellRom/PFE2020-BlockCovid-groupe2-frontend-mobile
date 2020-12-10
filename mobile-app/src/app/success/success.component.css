@@ -1,0 +1,33 @@
+h5 {
+  color: #d6666e;
+  text-decoration: #d6666e underline;
+}
+p {
+  color: #d6666e;
+}
+div.container-img {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+
+@media (min-width: 420px) {
+  img {
+    max-width: 48%;
+  }
+}
+@media (min-width: 760px) {
+  img {
+    max-width: 24%;
+  }
+}
+
+#returnHomeButton {
+  background-color: #d6666e;
+  color: white;
+}
